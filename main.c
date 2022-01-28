@@ -1,6 +1,7 @@
 #include "ft_loop.h"
 #include <stdio.h>
 
+
 int main()
 {
 	ft_loop_create(loop, 0);
