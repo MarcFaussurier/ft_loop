@@ -1,22 +1,20 @@
 #include "ft_loop.h"
-
-#include "stdlib.h"
-#include "assert.h"
-#ifndef QUEUE_DEPTH
-# define QUEUE_DEPTH 64
-#endif
-
-
-
+#include <stdio.h>
 
 int main()
 {
 	ft_loop_create(loop, 0);
-	loop.write(1, "42\n", 3, ^ void (ssize_t i){
-
-		loop.write(1, "21\n", 3, ^ void (ssize_t i){
-
-			printf("okok2\n");
+	
+	int y = 0;
+	int z = 0;
+	loop.write(1, "42\n", 3, ^ (ssize_t i)
+	{_(y, z)
+		y += 1;
+		z -= 1;
+		loop.write(1, "21\n", 3, ^ (ssize_t i)
+		{_(y)
+			y += 1;
+			printf("i=%i\n", y);
 		});
 		printf("okok\n");
 	});

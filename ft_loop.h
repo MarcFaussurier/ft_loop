@@ -4,26 +4,33 @@
 # include <sys/socket.h>
 # include <unistd.h>
 # include <liburing.h>
+# include <stdlib.h>
+# include <assert.h>
+# include "macro.h"
+# ifndef QUEUE_DEPTH
+#  define QUEUE_DEPTH 64
+# endif
 # define auto __auto_type
 # define fake_return return
+# define capture(X) typeof(X) X = X;
+# define _(...) FOR_EACH(capture, __VA_ARGS__)
 typedef struct s_loop
 {
         struct io_uring	*ring;
         int		(^accept)(int, struct sockaddr*, socklen_t *, void (^)(int));
-        ssize_t		(^write)(int, const void *, size_t, void (^) (ssize_t));
-        ssize_t		(^read)(int, const void *, size_t, void (^) (ssize_t));
-	unsigned int	(^sleep)(unsigned int, void(^)(unsigned int));
-        useconds_t	(^usleep)(useconds_t us, void(^)(useconds_t));
+        ssize_t		(^write)(int, const void *, size_t,  void (^) (ssize_t));
+        ssize_t		(^read)(int, const void *, size_t,  void (^) (ssize_t));
+	unsigned int	(^sleep)(unsigned int,  void(^)(unsigned int));
+        useconds_t	(^usleep)(useconds_t us,  void(^)(useconds_t));
 	int 		(^open)(const char *pathname, int flags, void (^) (int));
-	int 		(^creat)(const char *pathname, mode_t mode, void (^) (int));
-	int 		(^openat)(int dirfd, const char *pathname, int flags, mode_t mode, void(^) (int));
-	int 		(^openat2)(int dirfd, const char *pathname, const struct open_how *how, size_t size, void (^) (int));
+	int 		(^creat)(const char *pathname, mode_t mode,  void (^) (int));
+	int 		(^openat)(int dirfd, const char *pathname, int flags, mode_t mode,		void(^) (int));
+	int 		(^openat2)(int dirfd, const char *pathname, const struct open_how *how, size_t size,  void (^) (int));
 	void		(^run)(void);
 	void		(*s)(int);
 	
 }       	t_loop;
 #define ft_loop_create(Y, X)						\
-									\
 	t_loop Y;							\
 									\
 	loop.s = X;							\
@@ -42,8 +49,6 @@ typedef struct s_loop
                 io_uring_submit(loop.ring);				\
 		fake_return 0;						\
 	};								\
-									\
-									\
 	loop.write = ^ ssize_t (					\
 				int 		fd, 			\
 				const void	*b, 			\
@@ -57,8 +62,6 @@ typedef struct s_loop
                 io_uring_submit(loop.ring);				\
 		fake_return 0;						\
 	};								\
-									\
-									\
 	loop.run = ^ void (void)					\
 	{								\
                 struct io_uring_cqe 	*cqe;				\
@@ -66,14 +69,11 @@ typedef struct s_loop
 									\
 		while (1)						\
 		{							\
-			assert (io_uring_wait_cqe(loop.ring, &cqe) >= 0);	\
+			assert (io_uring_wait_cqe(loop.ring, &cqe) >= 0);\
 			(((void(^)(int)) cqe->user_data))(cqe->res);	\
 			io_uring_cqe_seen(loop.ring, cqe);		\
 		}							\
 		fake_return;						\
 	};								\
-
-
-//t_loop                  ft_loop_create(void(*)(int));
 
 #endif
