@@ -4,7 +4,6 @@
 int main()
 {
 	ft_loop_create(loop, 0);
-	
 	int y = 0;
 	int z = 0;
 	loop.write(1, "42\n", 3, ^ (ssize_t i)
