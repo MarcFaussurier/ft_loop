@@ -1,6 +1,26 @@
 #include "ft_loop.h"
 #include <stdio.h>
 
+macro rule 
+(
+ 	<name is_name(name)>
+		<x !strlen(x) || sisspace(x)>
+	=
+		<x !strlen(x) || sisspace(x)>
+	ft_loop_create(<args countargs(args) <= 1>)
+)
+{
+	return
+	(
+		string 
+		(
+			"ft_loop_create(<name>, ",
+			!countargs(args) ? "0" : args, 
+			")"
+		)
+	);
+}
+
 int main()
 {
 	auto loop = ft_loop_create();
@@ -14,7 +34,8 @@ int main()
 	y += 1;
 	printf("i=%lli\n", y);
 	printf("okok\n");
-	___
+	
+	___:
 	loop.run();
 	return (0);
 }
