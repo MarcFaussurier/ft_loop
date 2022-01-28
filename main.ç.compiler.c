@@ -5,6 +5,15 @@
 
 
 a fn (name, args)
+{
+	return cat 
+	(
+		"ft_loop_create(, ",
+		name,
+		!countargs(args) ? "0" : args, 
+		")"
+	);
+}
 
 int main(int ac, char **av)
 {
