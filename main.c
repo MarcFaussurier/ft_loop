@@ -1,12 +1,17 @@
 #include "ft_loop.h"
 #include <stdio.h>
 
+static inline void ft_free(void **p)
+{
+	free(*p);
+}
 
 int main()
 {
 	ft_loop_create(loop, 0);
 	int y = 0;
 	int z = 0;
+	void *sb destructor(ft_free) = 0;
 	loop.write(1, "42\n", 3, ^ (ssize_t i)
 	{_(y, z)
 		y += 1;
@@ -18,6 +23,5 @@ int main()
 		});
 		printf("okok\n");
 	});
-	loop.run();
 	return (0);
 }

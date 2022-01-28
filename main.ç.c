@@ -1,6 +1,63 @@
 #include "ft_loop.h"
 #include <stdio.h>
 
+/* lambda */
+
+macro rule
+(
+ 	<before>
+ 	{
+	<before_body>
+	^
+	<type>
+	(<args>)
+	{
+		<body>
+	}
+	<after_body>
+	}
+	<after>
+)
+{
+	auto id = generate_id();
+	auto captures = find_captures(args, body);
+	/*
+	 *	4bytes sqe->user_data ptr
+	 *	==
+	 *	2bytes fn_addr ptr 	==> 65535 items
+	 *	2bytes dn_data ptr  	==> 65535 items
+	 *
+	 * */
+	return cat
+	(
+		before,
+		"macro rule (call <ptr>(<args>))",
+		"{",
+			"auto id = find_find(ptr);"
+			"return cat",
+			"(",
+				"ptr,\"(\", args,\",\", captures, \")\"",
+			")",
+		"}",
+		type,
+		id,
+		"(",
+			args,
+			",",
+			captures
+		")",
+		"{",
+			body,
+		"}",
+		"{",
+		before_body,
+		"{&",id,",", "captures}"//must be a ptr
+		after_body,
+		"}",
+		after
+	);
+}
+
 /* ft_loop_create */
 macro rule 
 (
@@ -19,6 +76,7 @@ macro rule
 		")"
 	);
 }
+
 /* await */
 macro rule
 (

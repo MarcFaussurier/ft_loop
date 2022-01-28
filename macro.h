@@ -35,4 +35,24 @@
 # define FOR_EACH_RSEQ_N() 8, 7, 6, 5, 4, 3, 2, 1, 0
 # define FOR_EACH_(N, macro, ...) CONCATENATE(FOR_EACH_, N)(macro, __VA_ARGS__)
 # define FOR_EACH(macro, ...) FOR_EACH_(FOR_EACH_NARG(__VA_ARGS__), macro, __VA_ARGS__)
+/* destructor */
+#ifdef __clang__
+    static inline void defer_cleanup(void (^*b)(void)) { (*b)(); }
+    #define __defer3__(LINE, DEFER) \
+        __attribute__((cleanup(defer_cleanup))) void (^dummy_ ## LINE)(void) = ^{DEFER}
+
+
+    #define __defer2__(DEFER, L) __defer3__(L, DEFER)
+    #define defer(DEFER) __defer2__(DEFER, __LINE__)
+#else
+    #define __defer3__(LINE, DEFER) \
+        void clean_ ## LINE () { DEFER } \
+        int __attribute__((unused)) dummy_ ## LINE __attribute__((__cleanup__(clean_ ## LINE))) = 0
+
+
+    #define __defer2__(DEFER, L) __defer3__(L, DEFER)
+    #define defer(DEFER) __defer2__(DEFER, __LINE__)
+#endif
+/* defer */
+#define destructor(destructor) __attribute__((__cleanup__(destructor)))
 #endif
