@@ -9,6 +9,8 @@ static inline void ft_free(void **p)
 int main()
 {
 	ft_loop_create(loop, 0);
+	defer(loop.run(););
+
 	int y = 0;
 	int z = 0;
 	void *sb destructor(ft_free) = 0;
