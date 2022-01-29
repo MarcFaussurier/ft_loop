@@ -1,3 +1,6 @@
 [submodule "blocksruntime"]
 	path = blocksruntime
 	url = https://github.com/mackyle/blocksruntime.git
+[submodule "ft_cedille"]
+	path = ft_cedille
+	url = https://github.com/MarcFaussurier/ft_cedille.git
