@@ -3,7 +3,7 @@
 
 TODOS:
 - [X] ft_loop mvp using clang blocks
-- [ ] ft_cedille mvp 
+- [X] ft_cedille mvp 
 - [ ] await keyword 
 - [ ] more awaitable syscalls
 - [ ] http server
