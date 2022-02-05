@@ -8,14 +8,12 @@
 #include <sys/stat.h>										
 #define str(x) #x											
 #include <stdlib.h>											
-#include "ft_loop.h"
-#include <stdio.h>
+#import "ft_loop.h"
 
 static inline void ft_free(void **p)
 {
 	free(*p);
 }
-
 
  															
 #undef cat													
@@ -62,6 +60,24 @@ static void mkpath(const char *dir)
 		p += 1;												
 	}														
 }															
+char *macro_0(int i, int x, int y, char *s, char *test2, char *__end){
+
+	m_state_test += 1;
+	return(cat("Good night dear ", test2, "."));
+
+}
+char *macro_1(int i, int x, int y, char *s, char *prev, char *assignation, char *name, char *args, char *body, char *__end){
+
+	char	*o;
+
+
+	
+	asprintf(&o, "%s\n%s(%s%s ^(typeof(%s(%s%s 0)) %s) { %s });\n}",
+		cat (prev), cat(name), cat(args), strlen(cat(args)) ? "," : "", cat(name), cat(args), strlen(cat(args)) ? "," : "",  lastword(cat(assignation)), cat(body));
+
+	return (o);
+
+}
 															
 															
 int main(int ac, char **av)									
@@ -104,7 +120,304 @@ int main(int ac, char **av)
 	i_len = strlen(s);										
 	while (s[i])											
 	{														
-		 													
+		 success = 1;
+x=i;
+																
+					char test2[1024];
+*test2 = 0; char __end[1024];*__end = 0;
+																		
+					y = 0;																	
+					while (success)															
+					{																		
+						if (!(s[x + y] == "Hello "[y]				))															
+						{																	
+							macro_name = "macro_0";											
+							success = 0;													
+							break ;															
+						}																	
+						if (	y == 5)																
+						{																	
+							y += 1;															
+							printf("%s succeed macro_0 %i!\n", str(	y == 5), i);					
+							break ;															
+						}																	
+						y += 1;																
+					}																		
+					x += y;																	
+																			
+																							
+					y = 0;																	
+					while (success)															
+					{																		
+						if (!((test2[y] = s[x + y]) && y < 5		))															
+						{																	
+							macro_name = "macro_0";											
+							success = 0;													
+							break ;															
+						}																	
+						if (	s[x + y] == "!"[0]	&& !(test2[y] = 0))																
+						{																	
+							y += 1;															
+							printf("%s succeed macro_0 %i!\n", str(	s[x + y] == "!"[0]	&& !(test2[y] = 0)), i);					
+							break ;															
+						}																	
+						y += 1;																
+					}																		
+					x += y;																	
+																						
+	if (success)																			
+	{																						
+		r = macro_0(i, x, y, s, test2, __end);																			
+		goto success;																		
+	}success = 1;
+x=i;
+																
+					char prev[1024];
+*prev = 0; char assignation[1024];
+*assignation = 0; char name[1024];
+*name = 0; char args[1024];
+*args = 0; char body[1024];
+*body = 0; 																		
+					y = 0;																	
+					while (success)															
+					{																		
+						if (!((prev[0] = s[x])
+		&&
+		(
+			s[x] == '{'
+			||
+			s[x] == semicolon
+		)
+		))															
+						{																	
+							macro_name = "macro_1";											
+							success = 0;													
+							break ;															
+						}																	
+						if (
+		(
+			!(prev[1] = 0)
+		)
+	)																
+						{																	
+							y += 1;															
+							printf("%s succeed macro_1 %i!\n", str(
+		(
+			!(prev[1] = 0)
+		)
+	), i);					
+							break ;															
+						}																	
+						y += 1;																
+					}																		
+					x += y;																	
+																			
+																							
+					y = 0;																	
+					while (success)															
+					{																		
+						if (!((assignation[y] = s[x + y])
+		&& 
+		(
+			s[x + y] != '{' 
+			&& 
+			s[x + y] != semicolon)
+		))															
+						{																	
+							macro_name = "macro_1";											
+							success = 0;													
+							break ;															
+						}																	
+						if (
+		(s[x + y] == '=' || ((s[x + y] == 'a' && s[x + y + 1] == 'w') && (--x || 1)))
+		&&
+		!(assignation[y] = 0)
+	)																
+						{																	
+							y += 1;															
+							printf("%s succeed macro_1 %i!\n", str(
+		(s[x + y] == '=' || ((s[x + y] == 'a' && s[x + y + 1] == 'w') && (--x || 1)))
+		&&
+		!(assignation[y] = 0)
+	), i);					
+							break ;															
+						}																	
+						y += 1;																
+					}																		
+					x += y;																	
+																			
+																							
+					y = 0;																	
+					while (success)															
+					{																		
+						if (!(x
+	))															
+						{																	
+							macro_name = "macro_1";											
+							success = 0;													
+							break ;															
+						}																	
+						if ( 
+	!isspace(s[x + y]) && (--x || 1))																
+						{																	
+							y += 1;															
+							printf("%s succeed macro_1 %i!\n", str( 
+	!isspace(s[x + y]) && (--x || 1)), i);					
+							break ;															
+						}																	
+						y += 1;																
+					}																		
+					x += y;																	
+																			
+																							
+					y = 0;																	
+					while (success)															
+					{																		
+						if (!(s[x + y] == "await"[y]							))															
+						{																	
+							macro_name = "macro_1";											
+							success = 0;													
+							break ;															
+						}																	
+						if ( 	y == 4)																
+						{																	
+							y += 1;															
+							printf("%s succeed macro_1 %i!\n", str( 	y == 4), i);					
+							break ;															
+						}																	
+						y += 1;																
+					}																		
+					x += y;																	
+																			
+																							
+					y = 0;																	
+					while (success)															
+					{																		
+						if (!((name[y] = s[x + y]) && y < 12 && s[x + y]	
+		))															
+						{																	
+							macro_name = "macro_1";											
+							success = 0;													
+							break ;															
+						}																	
+						if (	
+		s[x + y] == '(' 
+		&&
+		!(
+			(name[y] = 0)
+			||
+			(m_parenthesis_level = 0)
+		)
+		)																
+						{																	
+							y += 1;															
+							printf("%s succeed macro_1 %i!\n", str(	
+		s[x + y] == '(' 
+		&&
+		!(
+			(name[y] = 0)
+			||
+			(m_parenthesis_level = 0)
+		)
+		), i);					
+							break ;															
+						}																	
+						y += 1;																
+					}																		
+					x += y;																	
+																			
+																							
+					y = 0;																	
+					while (success)															
+					{																		
+						if (!((args[y] = s[x + y]) 
+				&&
+				(((s[x + y] == '(')
+				&&
+				++m_parenthesis_level) || 1)
+				))															
+						{																	
+							macro_name = "macro_1";											
+							success = 0;													
+							break ;															
+						}																	
+						if (
+					(
+						s[x + y] == ')'
+						&&
+						!(m_parenthesis_level < 0)
+					)
+					&& 
+					!(
+						(args[y] = 0) 
+						||
+						(m_brace_level = 0)
+					)
+				)																
+						{																	
+							y += 1;															
+							printf("%s succeed macro_1 %i!\n", str(
+					(
+						s[x + y] == ')'
+						&&
+						!(m_parenthesis_level < 0)
+					)
+					&& 
+					!(
+						(args[y] = 0) 
+						||
+						(m_brace_level = 0)
+					)
+				), i);					
+							break ;															
+						}																	
+						y += 1;																
+					}																		
+					x += y;																	
+																			
+																							
+					y = 0;																	
+					while (success)															
+					{																		
+						if (!((body[y] = s[x + y])
+						&&
+						(
+							(
+								(s[x + y] == '{' && ++m_brace_level)
+								|| 		
+								(s[x + y] == '}' && (m_brace_level-- || 1))
+							) 
+							|| 1
+						)
+					))															
+						{																	
+							macro_name = "macro_1";											
+							success = 0;													
+							break ;															
+						}																	
+						if (	
+						(s[x + y] == '}' && m_brace_level < 0)
+						&&
+						!(body[y] = 0)
+					)																
+						{																	
+							y += 1;															
+							printf("%s succeed macro_1 %i!\n", str(	
+						(s[x + y] == '}' && m_brace_level < 0)
+						&&
+						!(body[y] = 0)
+					), i);					
+							break ;															
+						}																	
+						y += 1;																
+					}																		
+					x += y;																	
+																						
+	if (success)																			
+	{																						
+		r = macro_1(i, x, y, s, prev, assignation, name, args, body, __end);																			
+		goto success;																		
+	}													
 		goto failure;										
 		success:											
 			printf("1 macro applied [id=%s i=%d x=%d on=%.*s].\n", macro_name,  i, x, x - i, s + i);

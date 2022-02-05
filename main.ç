@@ -1,94 +1,4 @@
-#include "ft_loop.h"
-#include <stdio.h>
-
-#define await
-macro		rule
-(
-	<
-		(prev[0] = s[x])
-		&&
-		(
-			s[x] == '{'
-			||
-			s[x] == semicolon
-		)
-		;
-		(
-			!(prev[1] = 0)
-		)
-	;>
-	<
-		(assignation[y] = s[x + y])
-		&& 
-		(
-			s[x + y] != '{' 
-			&& 
-			s[x + y] != semicolon)
-		;
-		(s[x + y] == '=' || ((s[x + y] == 'a' && s[x + y + 1] == 'w') && (--x || 1)))
-		&&
-		!(assignation[y] = 0)
-	;>
-	<x
-	; 
-	!isspace(s[x + y]) && (--x || 1);>
-	<s[x + y] == "await"[y]							; 	y == 4;>
-		<(name[y] = s[x + y]) && y < 8 && s[x + y]	
-		;	
-		s[x + y] == '(' 
-		&&
-		!(
-			(name[y] = 0)
-			||
-			(m_parenthesis_level = 0)
-		)
-		;>
-				<(args[y] = s[x + y]) 
-				&&
-				(((s[x + y] == '(')
-				&&
-				++m_parenthesis_level) || 1)
-				;
-					(
-						s[x + y] == ')'
-						&&
-						!(m_parenthesis_level < 0)
-					)
-					&& 
-					!(
-						(args[y] = 0) 
-						||
-						(m_brace_level = 0)
-					)
-				;>
-					<(body[y] = s[x + y])
-						&&
-						(
-							(
-								(s[x + y] == '{' && ++m_brace_level)
-								|| 		
-								(s[x + y] == '}' && (m_brace_level-- || 1))
-							) 
-							|| 1
-						)
-					;	
-						(s[x + y] == '}' && m_brace_level < 0)
-						&&
-						!(body[y] = 0)
-					;>
-)
-{
-	char	*o;
-
-
-	
-	asprintf(&o, "%s\n%s(%s%s ^(typeof(%s(%s%s 0)) %s) { %s });\n}",
-		cat (prev), cat(name), cat(args), strlen(cat(args)) ? "," : "", cat(name), cat(args), strlen(cat(args)) ? "," : "",  lastword(cat(assignation)), cat(body));
-
-	return (o);
-}
-
-
+#import "ft_loop.h"
 
 static inline void ft_free(void **p)
 {
@@ -100,14 +10,17 @@ int main()
 	ft_loop_create(loop, 0);
 	defer(loop.run(););
 
-	int y = 0;
-	int z = 0;
+	auto y = 0;
+	auto z = 0;
 	void *sb destructor(ft_free) = 0;
-	auto i = await loop.write(1, "42\n", 3); 	_(y, z)
+	// TODO :: Fix me 
+	auto i = await loop.write(1, "4)\n", 3);
+	_(y, z)
 	printf("okok\n");
 	y += 1;
 	z -= 1;
-	i = await loop.write(1, "21\n", 3); 		_(y)
+	i = await loop.write(1, "21\n", 3);
+	_(y)
 	y += 1;
 	printf("i=%i\n", y);
 }
