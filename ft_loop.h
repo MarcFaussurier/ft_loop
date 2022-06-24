@@ -76,7 +76,7 @@ typedef struct s_loop
 		fake_return;						\
 	};								\
 
-
+/*
 #import "ft_cedille/ft_cedille_spec/ç"
 #include "stdio.h"
 #include "string.h"
@@ -93,9 +93,7 @@ macro int f(int x)
 	return (x);
 }
 
-/*
-	<continue while ; succeed on ;>
-*/
+//	<continue while ; succeed on ;>
 
 // test
 
@@ -148,7 +146,7 @@ macro char 	*lastword(char *str)
 }
 
 #include <stdio.h>
-/* TODO: deeper parse - f(await g(...)[await h(...) + await i(...)]) */
+// TODO: deeper parse - f(await g(...)[await h(...) + await i(...)]) 
 #define await
 macro		rule
 (
@@ -253,4 +251,5 @@ int 	foo( int p, char c, void (^ptr)(int k) )
 	ptr(42);
 	return (0);
 }
+*/
 #endif

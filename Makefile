@@ -8,7 +8,7 @@ all:			$(OBJECTS) spec
 compiler:		çc
 	cd ft_cedille && make compiler && cp ./çc ../
 spec:
-	cc main.c -o main
+	clang -I$(SRC)  main.c -o main -fblocks -lBlocksRuntime -luring  && ./main
 %.ce:			$(SRC)/%.ç	compiler
 	mkdir -p `dirname $(OUT)/$@`
 	touch .a.txt
