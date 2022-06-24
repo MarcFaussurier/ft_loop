@@ -7,7 +7,7 @@
 - tested under clang 12.0.1 (target: x86_64-alpine-linux-musl)
 
 compile main.c using :
-``` make spec ``` 
+``` make ``` 
 
 main.ç is an idea of a new 'await' keyword for C to use kernel async ability without nested lambda functions, that can be implemented using preprocessing only. The ft_cedille preprocessor that should preprocess this new keyword it is still a work in progress.
 
