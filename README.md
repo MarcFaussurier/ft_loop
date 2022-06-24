@@ -3,7 +3,7 @@
 
 # compilation
 
-- requires alpine linux 5.15 or greater for liburing (tested under Alpine linux 3.15).
+- tested under linux 5.15 (Alpine linux 3.15)
 - tested under clang 12.0.1 (target: x86_64-alpine-linux-musl)
 
 compile main.c using :
