@@ -4,7 +4,7 @@ SOURCES="main.ç"
 OBJECTS=$(shell echo $(SOURCES) | tr -s '.ç' '.co')
 RUN=valgrind --leak-check=full --show-leak-kinds=all
 çc=./çc
-all:			$(OBJECTS) spec
+all:			spec #$(OBJECTS) spec
 compiler:		çc
 	cd ft_cedille && make compiler && cp ./çc ../
 spec:
